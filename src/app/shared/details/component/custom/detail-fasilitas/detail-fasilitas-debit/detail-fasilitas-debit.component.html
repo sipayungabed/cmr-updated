@@ -1,0 +1,28 @@
+
+<div *ngIf="dataDebit">
+    <div class="row mb-2" *ngIf="category == 'outlet' && dataDebit[jsonKey.facilityCards]">
+        <label class="col-md-3 label-text">
+            <span class="main">MDR Debit</span>
+        </label>
+        <div class="col-md-4">
+            <app-detail-table-mdr [key]="key['onUs']" 
+                                    [dataList]="dataDebit[jsonKey.facilityCards]" 
+                                    [tableMdr]="debetMDR['onUs']"
+                                    [title]="'On US'"></app-detail-table-mdr>
+        </div>
+        <div class="col-md-4">
+            <app-detail-table-mdr [key]="key['offUs']" 
+                                    [dataList]="dataDebit[jsonKey.facilityCards]" 
+                                    [tableMdr]="debetMDR['offUs']"
+                                    [title]="'Off US'"></app-detail-table-mdr>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <label class="col-md-3 label-text">
+            <span class="main">Fitur</span>
+        </label>
+        <div class="col-md-4">
+            <app-detail-fasilitas-fitur [fiturConfiguration]="fiturMenuDebit" [length]="dataDebit[jsonKey.facilityFiturs] ? dataDebit[jsonKey.facilityFiturs].length : '0'"></app-detail-fasilitas-fitur>
+        </div>
+    </div>
+</div>

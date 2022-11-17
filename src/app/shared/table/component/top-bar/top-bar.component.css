@@ -1,0 +1,84 @@
+.btn-white {
+    background-color: #fff;
+    box-shadow: none
+}
+
+
+.fixed-width-btn
+{
+    min-width: 8em;
+}
+
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  cursor: pointer;
+}
+
+input.form-control:focus, 
+input[type=text]:focus, 
+[type=text].form-control:focus,
+button[type=button]:focus,
+btn-outline-secondary:focus,
+btn:active, btn:focus,
+btn-outline-secondary:active,
+button[type=button]:active,
+select:focus  {
+  box-shadow: none
+}
+
+::ng-deep .mat-select-value
+{
+  color: #495057;
+}
+
+
+::ng-deep .mat-form-field-wrapper
+{
+  background-color: white;
+  padding: 0;
+  border-radius: 5px
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix 
+{
+  padding: 0 0 0.5em 0;
+}
+
+::ng-deep .mat-select-arrow-wrapper
+{
+  padding-top: 10px;
+}
+
+.custom-button
+{
+  width: 100%;
+  height: 42px;
+  text-align: left;
+  padding-left: 15px;
+  background-color: white;
+  border: none;
+  outline:none;
+
+}
+
+.custom-button:hover
+{
+  background-color: rgba(0,0,0,.04);
+}
+
+.custom-button:active
+{
+  background-color: rgba(0, 0, 0, 0.158);
+  color: #00b7f1;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

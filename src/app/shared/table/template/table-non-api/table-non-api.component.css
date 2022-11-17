@@ -1,0 +1,51 @@
+.clickable:hover {
+    color: #00b7f1;
+    cursor: pointer;
+}
+
+.clickable
+{
+    color: #6C676A;
+}
+
+.table td{
+    padding: 0.2rem 0.5rem  0.2rem 0.7rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+    color: #6c676a;
+    max-width: fit-content;
+    word-wrap: break-word;
+    font-size: 13px;
+}
+
+.min-height
+{
+    min-height: 35px;
+}
+.fixed-width-btn
+{
+    min-width: 7em;
+}
+
+@media(max-width: 990px)
+{
+    .pagination-responsive
+    {
+        color: #6c676a!important;
+        width: fit-content!important;
+        text-align: center!important;
+        display: block!important;
+        margin: 0 auto!important;
+    }
+}
+
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  cursor: pointer;
+}

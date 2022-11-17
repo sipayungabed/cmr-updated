@@ -1,0 +1,13 @@
+<mat-expansion-panel [expanded]="true" class="color-gray mb-3">
+    <mat-expansion-panel-header class="block-header">
+        <mat-panel-title class="clickable">
+            <h6 >{{title}}</h6>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+        <div class="block-content">
+            <app-detail-controller *ngFor="let detail of detailsList" [detail]="detail" [data]="data"></app-detail-controller>
+        </div>
+        <mat-action-row *ngIf="closeButton">
+            <button class="btn btn-danger" (click)="close.emit(data)"><i class="fas fa-window-close"></i> Close</button>
+        </mat-action-row>
+</mat-expansion-panel>

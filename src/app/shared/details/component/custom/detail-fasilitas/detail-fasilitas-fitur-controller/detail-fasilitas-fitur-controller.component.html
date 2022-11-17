@@ -1,0 +1,50 @@
+<ng-container [ngSwitch]="child.inputType">
+    <ng-container *ngSwitchCase="'currency'">
+        <div class="form-group">
+            <label class="font-italic">{{child.name}}</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <div class="input-group-text main">RP.</div>
+                </div>
+                <input type="text" class="form-control form-control-sm text-right" disabled  [value]="value">
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'hour'">
+        <div class="form-group">
+            <label class="font-italic">{{child.name}}</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <div class="input-group-text main"><i class="fas fa-clock"></i></div>
+                </div>
+                <input type="text" class="form-control form-control-sm text-right" disabled  [value]="value">
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'text'">
+        <div class="form-group">
+            <label class="font-italic">{{child.name}}</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend" *ngIf="child.prepend">
+                    <div class="input-group-text main"><span [innerHTML]="child.prepend"></span></div>
+                </div>
+                <input type="text" class="form-control form-control-sm text-right" disabled  [value]="value">
+                <div class="input-group-append" *ngIf="child.append">
+                    <div class="input-group-text main"><span [innerHTML]="child.append"></span></div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+        <div class="form-group ml-3">
+            <input class="form-check-input" type="checkbox" disabled checked>
+            <label class="form-check-label">{{value}}</label>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'radio'">
+        <div class="form-group ml-3">
+            <input class="form-check-input" type="radio" disabled checked >
+            <label class="form-check-label">{{value}}</label>
+        </div>
+    </ng-container>
+</ng-container>

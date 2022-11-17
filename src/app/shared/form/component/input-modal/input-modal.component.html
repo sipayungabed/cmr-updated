@@ -1,0 +1,61 @@
+<div class="row mb-3 color-gray" 
+    [class.text-danger]="invalid(input)"
+    [class.text-success]="valid(input)">
+    <label class="col-md-3 label-text">
+        <span class="main">{{input.label}}</span>
+        <span *ngIf="input.required" class="text-danger"> *</span>
+    </label>
+    <div class="col-md-6">
+        <div [formGroup]="formGroup" >
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <button class="btn-custom input-group-text" 
+                    [class.failed]="invalid(input)"
+                    [class.success]="valid(input)"
+                    (click)="open(content)" 
+                    type="button"><i class="fas fa-search form-control-feedback"></i></button>
+                </div>
+                <div class="clickable form-control btn-custom"  readonly
+                    [class.is-invalid]="invalid(input)"
+                    [class.is-valid]="valid(input)"
+                    (click)="open(content)">
+                    {{ displayData ? displayData : input.modalConfiguration.displayLabel ? input.modalConfiguration.displayLabel :  input.label}}
+                </div>
+                <div class="input-group-append border-right" *ngIf="input.modalConfiguration.displayKey2">
+                    <p class="input-group-text clickable btn-custom justify-content-center" style="min-width: 4em;"
+                    [class.failed]="invalid(input)"
+                    [class.success]="valid(input)"
+                    readonly (click)="open(content)">{{displayData2 ? displayData2 : input.modalConfiguration.displayLabel2 ? input.modalConfiguration.displayLabel2
+                    : input.label}}</p>
+                </div>
+                <div class="input-group-append" *ngIf="!input.required">
+                    <span style="background-color: white; width: 4em;"></span>
+                </div>
+                <div class="input-group-append" *ngIf="!input.required">
+                    <button class="btn-custom input-group-text failed" (click)="clear()" type="button">
+                    <i class="fas fa-trash form-control-feedback"></i><span class="ml-1">Hapus</span></button>
+                </div>
+            </div>
+            <div *ngIf="invalid(input)" class="note">
+                Wajib diisi!
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+        <h5 class="modal-title " id="modal-basic-title">{{input.modalConfiguration.tableTitle ? input.modalConfiguration.tableTitle : input.label}}</h5>
+        <button type="button" class="close btn btn-danger" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-table-modal [modalConfiguration]="input.modalConfiguration" (inputEvent)="inputEvent($event); modal.close();"></app-table-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" (click)="modal.close();">Go Back</button>
+      </div>
+</ng-template>

@@ -1,0 +1,62 @@
+<div [ngSwitch]="detail.type" *ngIf="show">
+    <div *ngSwitchCase="'default'">
+        <app-detail-default [detail]="detail" [data]="data"></app-detail-default>
+    </div>
+    <div *ngSwitchCase="'address'">
+        <app-detail-address [detail]="detail" [data]="data"></app-detail-address>
+    </div>
+    <div *ngSwitchCase="'address-two'">
+        <app-detail-address-two [detail]="detail" [data]="data"></app-detail-address-two>
+    </div>
+    <div *ngSwitchCase="'multi-value'">
+        <app-detail-multi-value [detail]="detail" [dataList]="data[detail.jsonNameParent]"></app-detail-multi-value>
+    </div>
+    <div *ngSwitchCase="'children'">
+        <app-detail-default [detail]="detail" [data]="data"></app-detail-default>
+        <app-detail-controller *ngFor="let children of detail.children[data[detail.jsonName] + '']" 
+        [detail]="children" [data]="data"></app-detail-controller>
+    </div>
+    <div *ngSwitchCase="'dual-col'">
+        <div class="row">
+            <div class="col-md-6">
+                <app-detail-controller *ngFor="let children of detail.children['left']" [detail]="children" [data]="data"></app-detail-controller>
+            </div>
+            <div class="col-md-6">
+                <app-detail-controller *ngFor="let children of detail.children['right']" [detail]="children" [data]="data"></app-detail-controller>
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchCase="'sub-title'">
+        <h5 class="main">{{detail.jsonName ? detail.label + data[detail.jsonName] : detail.label}}</h5>             
+    </div>
+    <div *ngSwitchCase="'border'">
+        <hr class="hr-dashed">
+    </div>
+    <div *ngSwitchCase="'label-only'">
+        <div class="row mb-4">
+            <label class="col-md-3 label-text">
+                <span class="main">{{detail.label}}</span>
+            </label>
+            <div class="col-md-9"><p></p></div>
+        </div>
+    </div>
+    <div *ngSwitchCase="'multi-json-label'">
+        <app-detail-multi-json-label [detail]="detail" [data]="data"></app-detail-multi-json-label>             
+    </div>
+    <div *ngSwitchCase="'input-disabled'">
+        <ng-container  [ngSwitch]="detail.inputConfig.inputType">
+            <ng-container  *ngSwitchCase="'text-area'">
+                <app-detail-text-area-disabled [detail]="detail" [data]="data"></app-detail-text-area-disabled>
+            </ng-container>
+            <ng-container  *ngSwitchCase="'text'">
+                    <app-detail-text-disabled [detail]="detail" [data]="data"></app-detail-text-disabled>
+            </ng-container>
+            <ng-container *ngSwitchCase="'radio-children'">
+                    <app-detail-radio-children-disabled [detail]="detail" [data]="data"></app-detail-radio-children-disabled>
+            </ng-container>
+        </ng-container>    
+    </div>
+    <div *ngSwitchCase="'text-custom'">
+        <div [innerHTML]="detail.label"></div>            
+    </div>
+</div>

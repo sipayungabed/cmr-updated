@@ -1,0 +1,17 @@
+ .breadcrumb {
+    background-color: white;
+    padding: 0 0 0 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    border-radius: .25rem;
+} 
+
+
+.breadcrumb-custom
+{
+    font-size: 13px;
+    font-weight: 200;
+}

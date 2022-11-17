@@ -1,0 +1,43 @@
+<div class="row  mb-4 h-100">
+    <div [ngClass]="indented"></div>
+    <label class="label-text my-auto" [ngClass]="colLabel">
+        <span class="main">{{detail.label}}</span>
+    </label>
+    <div *ngIf="jsonNameIsString"  [ngClass]="colValue">
+        <div class="input-group input-group-sm">
+
+            <div class="input-group-prepend" *ngIf="detail.inputConfig && detail.inputConfig.prepend">
+              <div class="input-group-text"><span [innerHTML]="detail.inputConfig.prepend[detail.jsonName]"></span></div>
+            </div>
+
+            <input type="text" class="form-control form-control-sm" 
+            [placeholder]="detail.label"
+            [value]="data | changeValue:detail" disabled>
+
+            <div class="input-group-append" *ngIf="detail.inputConfig && detail.inputConfig.append">
+                <div class="input-group-text"><span [innerHTML]="detail.inputConfig.append[detail.jsonName]"></span></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!jsonNameIsString"  [ngClass]="colValue">
+        <div class="row">
+            <div *ngFor="let jsonName of detail.jsonName; let i = index" [ngClass]="colChildren">
+                <div class="input-group input-group-sm">
+
+                    <div class="input-group-prepend" *ngIf="detail.inputConfig && detail.inputConfig.prepend && detail.inputConfig.prepend[jsonName]">
+                        <div class="input-group-text"><span [innerHTML]="detail.inputConfig.prepend[jsonName]"></span></div>
+                    </div>
+
+                    <input type="text" class="form-control form-control-sm" 
+                    [placeholder]="detail.label"
+                    [value]="data | changeValue:detail:jsonName" disabled>
+
+                    <div class="input-group-append" *ngIf="detail.inputConfig && detail.inputConfig.append && detail.inputConfig.append[jsonName]">
+                        <div class="input-group-text"><span [innerHTML]="detail.inputConfig.append[jsonName]"></span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

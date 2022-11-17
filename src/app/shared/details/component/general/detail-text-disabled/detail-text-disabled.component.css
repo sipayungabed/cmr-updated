@@ -1,0 +1,28 @@
+@media(max-width: 768px) 
+{
+.label-text {
+    text-align: left;
+  }
+}
+
+@media(min-width: 768px) 
+{
+.label-text {
+    text-align: right;
+  }
+}
+
+.main {
+  font-weight: 700;
+}
+
+.note
+{
+    margin-top: 5px;
+    font-size: 11.7px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 0px;
+    margin-left: 15px;
+  }

@@ -1,0 +1,10 @@
+<div class="row  mb-3">
+    <div [ngClass]="indented"></div>
+    <label class="label-text mt-auto mb-auto" [ngClass]="colLabel">
+        <span class="main">{{detail.label}}</span>
+    </label>
+    <div [ngClass]="classCol" *ngFor="let jsonName of detail.jsonName">
+        <p class="form-control-static mt-auto mb-auto"><strong>{{detail.multiLabel[jsonName]}}</strong>
+        <br> {{data | changeValue:detail:jsonName}}</p>
+    </div>
+</div>

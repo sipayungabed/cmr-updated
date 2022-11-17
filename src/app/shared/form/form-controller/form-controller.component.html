@@ -1,0 +1,47 @@
+
+<ng-container *ngIf="!hide">
+    <div [ngSwitch]="input.type">
+        <div *ngSwitchCase="'text'">
+            <app-input-text [input]="input" [formGroup]="formGroup"></app-input-text>
+        </div>
+        <div *ngSwitchCase="'date'">
+            <app-input-date [input]="input" [formGroup]="formGroup"></app-input-date>
+        </div>
+        <div *ngSwitchCase="'text-area'">
+            <app-input-text-area [input]="input" [formGroup]="formGroup"></app-input-text-area>
+        </div>
+        <div *ngSwitchCase="'select'">
+            <app-input-select [input]="input" [formGroup]="formGroup"></app-input-select>
+        </div>
+        <div *ngSwitchCase="'radio'">
+            <app-input-radio [input]="input" [formGroup]="formGroup"></app-input-radio>
+        </div>
+        <div *ngSwitchCase="'modal'">
+            <app-input-modal [input]="input" [formGroup]="formGroup"></app-input-modal>
+        </div>
+        <div *ngSwitchCase="'number'">
+            <app-input-number [input]="input" [formGroup]="formGroup"></app-input-number>
+        </div>
+        <div *ngSwitchCase="'address'">
+            <app-input-address [input]="input" [formGroup]="formGroup"></app-input-address>
+        </div>
+        <div *ngSwitchCase="'select-children'">
+            <app-input-select [input]="input" [formGroup]="formGroup" (onChangeEvent)="onChangeEvent($event)"></app-input-select>
+            <app-form-controller  *ngFor="let input of input.children[formGroup.get(input.jsonName).value]"
+                                    [input]="input" [formGroup]="formGroup">
+            </app-form-controller>
+        </div>
+        <div *ngSwitchCase="'radio-children'">
+            <app-input-radio [input]="input" [formGroup]="formGroup" (onChangeEvent)="onChangeEvent($event)"></app-input-radio>
+            <app-form-controller  *ngFor="let input of input.children[formGroup.get(input.jsonName).value]"
+                                    [input]="input" [formGroup]="formGroup">
+            </app-form-controller>
+        </div>
+        <div *ngSwitchCase="'non-input'">
+            <app-non-input [input]="input" [formGroup]="formGroup"></app-non-input>
+        </div>
+        <div *ngSwitchCase="'multiple-checkbox'">
+            <app-multiple-checkbox [input]="input" [formGroup]="formGroup" [isCheckboxVertical]="isCheckboxVertical"></app-multiple-checkbox>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,10 @@
+<div class="row mb-2">
+    <div [ngClass]="indented"></div>
+    <label class="label-text my-auto" [ngClass]="colLabel">
+        <span class="main">{{detail.label}}</span>
+    </label>
+    <div [ngClass]="colValue">
+        <textarea disabled class="form-control" 
+        [rows]="detail.inputConfig.rows ? detail.inputConfig.rows : '2'">{{data | changeValue:detail}}</textarea>
+    </div>
+</div>

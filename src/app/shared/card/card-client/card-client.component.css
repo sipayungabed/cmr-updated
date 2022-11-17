@@ -1,0 +1,58 @@
+
+.client-data-detail{
+    display: flex;
+    
+}
+.header-client-list{
+    display: flex;
+}
+.email{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 30px;
+    flex-direction: row;
+}
+.merchant-label{
+    margin-top: 5px;
+    background-color: #FEECB5;
+    width: fit-content;
+    border-radius: 9px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: black;
+    font-size: small;
+}
+
+.card-data{
+    /* text-align: center; */
+}
+
+.table td{
+    padding: 0.2rem 0.5rem  0.2rem 0.7rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+    color: #6c676a;
+    word-wrap: break-word;
+    font-size: 13px;
+} 
+.group-label{
+    width: fit-content;
+    border-radius: 9px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: black;
+    background-color : #DFF0D0;
+    font-size: small;
+    
+}
+
+.corporate-label{
+    width: fit-content;
+    border-radius: 9px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: black;
+    background-color: #E1F1F6;
+    font-size: small;
+
+}

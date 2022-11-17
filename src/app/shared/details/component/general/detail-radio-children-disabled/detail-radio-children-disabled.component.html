@@ -1,0 +1,19 @@
+<div class="row mb-2 h-100 mb-3">
+    <div [ngClass]="indented"></div>
+    <label class="label-text my-auto" [ngClass]="colLabel">
+        <span class="main">{{detail.label}}</span>
+    </label>
+    <div class="my-auto" [ngClass]="colValue">
+        <mat-radio-group disabled [value]="data[detail.jsonName]">
+            <mat-radio-button *ngFor="let option of detail.inputConfig.option" [value]="option.value">{{option.key}}</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <ng-container  [ngSwitch]="typeRadioChild">
+        <div class="my-auto" *ngSwitchCase="'input-text'" [ngClass]="colChildren">
+            <app-detail-text-disabled [detail]="detailChildren" [data]="data"></app-detail-text-disabled>
+        </div>
+        <div class="my-auto" *ngSwitchCase="'non-input-text'" [ngClass]="colChildren">
+            <app-detail-default [detail]="detailChildren" [data]="data"></app-detail-default>
+        </div>
+    </ng-container>
+</div>

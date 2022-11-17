@@ -1,0 +1,28 @@
+
+<ng-container *ngIf="length == 0">
+    Outlet ini tidak memiliki fitur.
+</ng-container>
+<ng-container *ngIf="length != 0">
+    <ng-container *ngFor="let fitur of fiturConfiguration">
+        <div class="row mb-2" *ngIf="fitur.value">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" disabled checked>
+                <label class="form-check-label">{{fitur.name}}</label>
+            </div>
+        </div>
+        <ng-container *ngFor="let child1 of fitur.children1">
+            <div class="row ml-1" *ngIf="child1?.value">
+                <div class="col">
+                    <app-detail-fasilitas-fitur-controller [child]="child1"></app-detail-fasilitas-fitur-controller>
+                </div>
+            </div>
+                <ng-container *ngFor="let child2 of child1?.children2">
+                    <div class="row ml-4" *ngIf="child2?.value">
+                        <div class="col">
+                            <app-detail-fasilitas-fitur-controller [child]="child2"></app-detail-fasilitas-fitur-controller>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </ng-container>

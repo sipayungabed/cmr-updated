@@ -1,0 +1,26 @@
+
+@media(max-width: 768px) 
+{
+  .label-text 
+  {
+    text-align: left;
+  }
+}
+
+@media(min-width: 768px) 
+{
+.label-text {
+    text-align: right;
+  }
+}
+
+.hr-dashed {
+    border: 1px solid #eee;
+    width: 100%;
+    border-style: dashed;
+    margin: 15px 0;
+}
+
+.main {
+  font-weight: 700;
+}

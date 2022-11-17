@@ -1,0 +1,8 @@
+<div class="breadcrumb" style="margin-bottom: 0;">
+  <div *ngFor="let breadcrumb of breadcrumbs; let i = index"  class="breadcrumb-item breadcrumb-custom" [class.active]="i == breadcrumbs.length-1">
+    <a [routerLink]="breadcrumb.url" *ngIf="i < breadcrumbs.length-1" >
+      {{ breadcrumb.label }}
+    </a>
+    <span *ngIf="i == breadcrumbs.length-1">{{ breadcrumb.label }} </span>
+  </div>
+</div>

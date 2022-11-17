@@ -1,0 +1,45 @@
+    <!-- <div class="block-header">
+        <h5>{{formTemplate.title}} </h5>
+    </div> -->
+<div *ngIf="!formGroup && status == 'loading'">
+    <div class="block-content">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            </div>
+            <p class="text-center mt-2">Memuat Data....</p>
+    </div>
+</div>
+<div *ngIf="!formGroup && status == 'failed'">
+    <div class="block-content">
+        <h4 class="text-center text-danger mt-2">Gagal Memuat Data</h4>
+    </div>
+</div>
+<form [formGroup]="formGroup" (ngSubmit)="save()" *ngIf="formGroup">
+    <div class="block-content color-gray">
+        <app-form-controller  *ngFor="let input of formTemplate.inputList" [input]="input" [formGroup]="formGroup" [isCheckboxVertical]="isCheckboxVertical">
+        </app-form-controller>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <!-- Valid : {{formGroup.valid }} -->
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex flex-row">
+                    <div class="p-1" *ngIf="formType == 'get'">
+                        <button [disabled]="!formGroup.valid ||  !formGroup.dirty" type="submit" class="btn btn-primary">
+                            <i class="fas fa-save left"></i> Cari</button>
+                    </div>
+                    <div class="p-1">
+                        <button type="button" class="btn btn-danger " (click)="cancel()">
+                        <i class="fas fa-chevron-left left"></i> Batal</button>
+                    </div>
+                    <div class="p-1" *ngIf="formType == 'post'">
+                        <button [disabled]="!formGroup.valid ||  !formGroup.dirty" type="submit" class="btn btn-primary">
+                            <i class="fas fa-save left"></i> Repost</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

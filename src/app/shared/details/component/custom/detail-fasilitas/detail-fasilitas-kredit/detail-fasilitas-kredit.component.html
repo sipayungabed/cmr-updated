@@ -1,0 +1,28 @@
+<div *ngIf="dataKredit">
+    <div class="row mb-2" *ngIf="category == 'outlet' && dataKredit[jsonKey.facilityCards]">
+        <label class="col-md-3 label-text">
+            <span class="main">MDR Kredit</span>
+        </label>
+        <div class="col-md-4">
+            <app-detail-table-mdr [key]="key['onUs']" 
+                                    [tableMdr]="kreditMDR['onUs']"
+                                    [dataList]="dataKredit[jsonKey.facilityCards]"
+                                    [title]="'On US'"></app-detail-table-mdr>
+        </div>
+        <div class="col-md-4">
+            <app-detail-table-mdr [key]="key['offUs']" 
+                                    [tableMdr]="kreditMDR['offUs']"
+                                    [dataList]="dataKredit[jsonKey.facilityCards]" 
+                                    [title]="'Off US'">
+            </app-detail-table-mdr>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <label class="col-md-3 label-text">
+            <span class="main">Fitur</span>
+        </label>
+        <div class="col-md-4">
+            <app-detail-fasilitas-fitur [fiturConfiguration]="fiturMenuKredit" [length]="length"></app-detail-fasilitas-fitur>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@media(max-width: 768px) 
+{
+.label-text {
+    text-align: left;
+  }
+}
+
+@media(min-width: 768px) 
+{
+.label-text {
+    text-align: right;
+  }
+}
+
+.main {
+  font-weight: 700;
+}

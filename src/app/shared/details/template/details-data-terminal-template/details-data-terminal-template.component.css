@@ -1,0 +1,55 @@
+.block-header {
+    border-bottom: #dadada 1px solid;
+
+}
+
+.block-content {
+    padding-top: 15px;
+}
+
+.clickable:hover {
+    color: #00b7f1;
+    cursor: pointer;
+}
+
+.clickable
+{
+    color: #6C676A;
+}
+
+.color-gray
+{
+    color: #6c676a;
+}
+
+
+.main {
+    font-weight: 700;
+  }
+  
+  
+  
+  .table td, .table th {
+      padding: 0.2rem 0.5rem  0.2rem 0.7rem;
+      vertical-align: middle;
+      border-top: 1px solid #dee2e6;
+      color: #6c676a;
+  } 
+  
+  .table th 
+  {
+      font-size: 14.3px;
+  }
+  
+  .table td
+  {
+      max-width: 15em;
+      word-wrap: break-word;
+      font-size: 13px;
+  }
+  
+  .fixed-width-btn
+  {
+      min-width: 7em;
+  }
+  

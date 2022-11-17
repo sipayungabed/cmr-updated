@@ -1,0 +1,38 @@
+<mat-expansion-panel [expanded]="true" class="color-gray mb-3">
+    <mat-expansion-panel-header class="block-header">
+        <mat-panel-title class="clickable">
+            <h6 >Fasilitas</h6>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="block-content">
+        <div class="row mb-2" *ngIf="dataKredit && dataKredit.oFacilityCards">
+            <label class="col-md-3 label-text" >
+                <span class="main">MDR Kredit</span>
+            </label>
+            <div class="col-md-4">
+                <app-detail-table-mdr [key]="key['onUs']" 
+                                        [tableMdr]="kreditMDR['onUs']"
+                                        [dataList]="dataKredit.oFacilityCards"
+                                        [title]="'On US'"></app-detail-table-mdr>
+            </div>
+            <div class="col-md-4">
+                <app-detail-table-mdr [key]="key['offUs']" 
+                                        [tableMdr]="kreditMDR['offUs']"
+                                        [dataList]="dataKredit.oFacilityCards" 
+                                        [title]="'Off US'">
+                </app-detail-table-mdr>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label class="col-md-3 label-text">
+                <span class="main">Fitur</span>
+            </label>
+            <div class="col-md-4">
+                <app-detail-fasilitas-fitur [fiturConfiguration]="fiturLeft" [length]="length"></app-detail-fasilitas-fitur>
+            </div>
+            <div class="col-md-4">
+                <app-detail-fasilitas-fitur [fiturConfiguration]="fiturRight" [length]="length"></app-detail-fasilitas-fitur>
+            </div>
+        </div>
+    </div>
+</mat-expansion-panel>

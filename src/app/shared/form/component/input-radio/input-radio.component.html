@@ -1,0 +1,22 @@
+<div class="row mb-3 color-gray"
+[class.text-danger]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+[class.text-success]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{input.label}}</span>
+        <span *ngIf="input.required" class="text-danger"> *</span>
+    </label>
+    <div [ngClass]="colInput">
+        <div [formGroup]="formGroup" >
+                <mat-radio-group [formControlName]="input.jsonName"  aria-label="Select an option" (change)="changeEvent($event)">
+                  <mat-radio-button *ngFor="let option of input.option" [value]="option.value">{{option.key}}</mat-radio-button>
+                </mat-radio-group>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.required" class="note">
+                Wajib diisi!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.pattern" class="note">
+                Pilihan tidak sesuai
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="row">
+    <div [ngClass]="indented"></div>
+    <div class="col-md-2">
+        <p class="form-control-static"><strong>Kelurahan</strong><br>{{value['kelurahan']}}</p>
+    </div>
+    <div class="col-md-2">
+         <p class="form-control-static"><strong>Kode Pos</strong><br>{{value['kodePos']}}</p>
+    </div>
+</div>
+<div class="row mt-2" style="font-size: 15px;" >
+    <div [ngClass]="indented"></div>
+    <div class="col-md-2">
+        <p class="form-control-static"><strong>Kecamatan</strong><br>{{value['kecamatan']}}</p>
+      </div>
+      <div class="col-md-2">
+        <p class="form-control-static"><strong>Kota</strong><br>{{value['kota']}}</p>
+      </div>
+      <div class="col-md-2">
+        <p class="form-control-static"><strong>Propinsi</strong><br>{{value['provinsi']}}</p>
+      </div>
+</div>

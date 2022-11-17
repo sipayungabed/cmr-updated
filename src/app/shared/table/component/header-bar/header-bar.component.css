@@ -1,0 +1,44 @@
+.clickable:hover {
+    color: #00b7f1;
+    cursor: pointer;
+}
+
+.clickable
+{
+    color: #6C676A;
+}
+
+th {
+    padding: 0.2rem 0.5rem  0.2rem 0.7rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+    color: #6c676a;
+    font-size: 14.3px;
+} 
+
+.active
+{
+    background-color: #f5f5f5;
+}
+
+.id{
+    flex: 0 0 10%;
+}
+.name{
+    flex: 0 0 22%;
+}
+.email{
+    flex: 0 0 24.5%;
+}
+.approval{  
+    flex: 0 0 14.3%;
+}
+.template{
+    flex: 0 0 14%;
+}
+.file{
+    flex: 0 0 15.2%;
+}
+.left{
+    padding-left: 12%;
+}

@@ -1,0 +1,45 @@
+
+<mat-expansion-panel [expanded]="true" class="color-gray mb-3" *ngIf="dataFasilitasCil0">
+    <mat-expansion-panel-header class="block-header">
+        <mat-panel-title class="clickable">
+            <h6 >Fasilitas Cicilan 0%</h6>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="block-content">
+        <app-detail-controller [detail]="detail" [data]="dataFasilitasCil0.oFacFiturItemLists[0]"></app-detail-controller>
+        <div class="table-responsive">
+            <table  class="table table-striped table-hover text-center">
+                <thead >
+                    <tr>
+                        <th rowspan="2"  class="align-middle" *ngIf="jenisOutlet != 'e-commerce'">MID</th>
+                        <th rowspan="2"  class="align-middle">Tenor</th>
+                        <th rowspan="2"  class="align-middle">Header Name</th>
+                        <th rowspan="2"  class="align-middle">Plan</th>
+                        <th colspan="6">MDR</th>
+                    </tr>
+                    <tr>
+                        <th>BCA Card</th>
+                        <th>Visa</th>
+                        <th>Master</th>
+                        <th>JCB</th>
+                        <th>AMEX</th>
+                        <th>CUP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dat of dataFasilitasCil0.oFacFiturItemLists; let i = index">
+                        <td *ngIf="jenisOutlet != 'e-commerce'">{{dat['mid'] ? dat['mid'] : '-'}}</td>
+                        <td>{{dat['tenor'] ? dat['tenor'] : '-'}} Bulan</td>
+                        <td>{{dat['name'] ? dat['name'] : '-'}}</td>
+                        <td>{{dat['plan'] ? dat['plan'] : '-'}}</td>
+                        <td *ngFor="let dataoFacFiturItemListCards of dat.oFacFiturItemListCards">
+                            {{dataoFacFiturItemListCards['mdr']}} %
+                        </td>
+                        <td *ngIf="isCupNotFound"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</mat-expansion-panel>
+                

@@ -1,0 +1,143 @@
+<app-card-filter (filterEvent)="filter($event)" (searchEvent)="search($event)"></app-card-filter>
+
+<div class="d-flex flex-column">
+  <table class="table table-striped table-hover">
+    <thead  app-header-bar [tableData]="cardModel.cardData" [sort]="sort" [append]="newColumn" (sortEvent)="sorting($event)">
+    </thead>
+  </table>
+  <mat-accordion>
+    <mat-expansion-panel
+      *ngFor="let data of dataList"
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header
+        class="d-flex"
+        [collapsedHeight]="'200px'"
+        [expandedHeight]="'200px'"
+      >
+        <div class="header-client-list ">
+          <div class="flex-10  card-data">
+            {{ data.client_id }}
+          </div>
+          <div class="d-flex flex-column flex-20">
+            <div class="card-data">
+              {{ data.client_name }}
+            </div>
+            <div>
+              <ng-container [ngSwitch]="data.client_type" class="card-data">
+                <div *ngSwitchCase="'M'" class="merchant-label">merchant</div>
+                <div *ngSwitchCase="'G'" class="group-label">group</div>
+                <div *ngSwitchCase="'C'" class="corporate-label">corporate</div>
+              </ng-container>
+            </div>
+          </div>
+          <mat-chip-list class="email flex-30">
+            <mat-chip *ngIf="data.client_email1 != '-'" class="email-detail">{{ data.client_email1 }}</mat-chip>
+            <mat-chip *ngIf="data.client_email2 != '-'" class="email-detail">{{ data.client_email2 }}</mat-chip>
+            <mat-chip *ngIf="data.client_email3 != '-'" class="email-detail">{{ data.client_email3 }}</mat-chip>
+            <mat-chip *ngIf="data.client_email4 != '-'" class="email-detail">{{ data.client_email4 }}</mat-chip>
+            <mat-chip *ngIf="data.client_email5 != '-'" class="email-detail">{{ data.client_email5 }}</mat-chip>
+          </mat-chip-list>
+          <div class="flex-15 card-data">
+            {{ data.client_status_approval }}
+          </div>
+          <div class="flex-15 card-data">
+            {{ data.template_status_approval }}
+          </div>
+          <div class="flex-10 card-data">
+            {{ data.file_type }}
+          </div>
+        </div>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-row justify-content-around">
+        <div>
+         CLIENT :
+          <div class="client-data-detail">
+            <p>Requested Date</p>
+            <span>:</span>
+            <div>{{ data.client_requested_date }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Requested Id</p>
+            <span>:</span>
+            <div>{{ data.client_requested_id }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Approval Date</p>
+            <span>:</span>
+            <div>{{ data.client_approval_date }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Approval_id</p>
+            <span>:</span>
+            <div>{{ data.client_approval_id }}</div>
+          </div>
+        </div>
+        <div>
+         TEMPLATE :
+          <div class="client-data-detail">
+            <p>Name</p>
+            <span>:</span>
+            <div>{{ data.template_name }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Status</p>
+            <span>:</span>
+            <div>{{ data.template_status }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Status Approval</p>
+            <span>:</span>
+            <div>{{ data.template_status_approval }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Requested Date</p>
+            <span>:</span>
+            <div>{{ data.template_requested_date }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Requested Id</p>
+            <span>:</span>
+            <div>{{ data.template_requested_id }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Approval Date</p>
+            <span>:</span>
+            <div>{{ data.template_approval_date }}</div>
+          </div>
+          <div class="client-data-detail">
+            <p>Approval Id</p>
+            <span>:</span>
+            <div>{{ data.template_approval_id }}</div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div
+    *ngIf="status == 'success' && !cardModel.removePagination"
+    class="row mt-4"
+  >
+    <div class="col-lg-6 mt-2">
+      <div class="pagination-responsive">
+        Baris {{ row.start }} - {{ row.end }} dari
+        {{ cardModel.totalrows }} data.
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="pagination-responsive d-flex justify-content-end">
+        <ngb-pagination
+          [collectionSize]="cardModel.totalrows"
+          [(page)]="pagination.page"
+          (pageChange)="paginate()"
+          [maxSize]="5"
+          [rotate]="true"
+          [ellipses]="false"
+          [boundaryLinks]="true"
+        >
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

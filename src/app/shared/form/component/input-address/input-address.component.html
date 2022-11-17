@@ -1,0 +1,20 @@
+<app-input-modal [input]="input" [formGroup]="formGroup"></app-input-modal>
+<div class="row mb-3" [class.text-danger]="invalid(input)" [class.text-success]="valid(input)">
+    <div [ngClass]="indented"></div>
+    <div [ngClass]="colLabel"></div>
+    <div [ngClass]="colInput">
+        <div [formGroup]="formGroup" >
+            <div class="row mt-2" style="font-size: 15px;" >
+                <div class="col-sm-4">
+                  <p class="form-control-static"><strong>Kecamatan</strong><br>{{formGroup.get('subdistrict_name').value ? formGroup.get('subdistrict_name').value  : '-'}}</p>
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-control-static"><strong>Kota</strong><br>{{formGroup.get('regency_name').value ? formGroup.get('regency_name').value : '-'}}</p>
+                </div>
+                <div class="col-sm-4">
+                  <p class="form-control-static"><strong>Propinsi</strong><br>{{formGroup.get('province_name').value ? formGroup.get('province_name').value : '-'}}</p>
+                </div>
+              </div>
+        </div>
+  </div>
+</div>

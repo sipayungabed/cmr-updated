@@ -1,0 +1,9 @@
+<div class="row  mb-2">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{detail.label}}</span>
+    </label>
+    <div [ngClass]="colValue">
+        {{data | changeValue:detail}}
+    </div>
+</div>

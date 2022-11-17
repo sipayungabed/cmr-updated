@@ -1,0 +1,41 @@
+<div class="table-responsive">
+    <table class="table table-stripped table-hover">
+    
+        <thead app-header-bar [tableData]="modalConfiguration.tableData" [sort]="sort" (sortEvent)="sorting($event)"></thead>
+        <tbody app-top-bar [tableData]="modalConfiguration.tableData" (search)="filter($event)"></tbody>
+       
+        <ng-container [ngSwitch]="status">
+            <tbody app-loading-bar *ngSwitchCase="'loading'" [length]="modalConfiguration.tableData.length"></tbody>
+            <tbody app-notification-bar  *ngSwitchCase="'failed'" [length]="modalConfiguration.tableData.length" [content]="'Gagal memuat data!'" [class]="'text-danger text-center'"></tbody>
+            <tbody app-notification-bar  *ngSwitchCase="'no content'" [length]="modalConfiguration.tableData.length"[content]="'Tidak ada data!'" [class]="'text-center'"></tbody>
+            <tbody  *ngSwitchCase="'success'"> 
+                <tr *ngFor="let data of dataList" class="clickable noselect" (dblclick)="input(data);">
+                    <td *ngFor="let tableData of modalConfiguration.tableData">
+                        <div>{{data | changeValue:tableData}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </ng-container>
+    </table>
+</div>
+<div *ngIf="status == 'success'"  class="row mt-4 ">
+    <div class="col-lg-6 mt-2">
+        <div class="pagination-responsive">
+            Baris {{ row.start }} - {{ row.end }} dari {{totalrows}} data.
+        </div>
+    </div> 
+    <div class="col-lg-6">
+        <div class="pagination-responsive d-flex justify-content-end" >
+            <ngb-pagination  class="ml-auto align-self-center"
+            [collectionSize]="totalrows"
+            [(page)]="pagination.page"
+            (pageChange)="pageChange()" 
+            [maxSize]="5" 
+            [rotate]="true" 
+            size="sm"
+            [ellipses]="false" 
+            [boundaryLinks]="true">
+        </ngb-pagination>
+        </div>
+    </div>
+</div>

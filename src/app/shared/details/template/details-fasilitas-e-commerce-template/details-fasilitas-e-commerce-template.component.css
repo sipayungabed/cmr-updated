@@ -1,0 +1,42 @@
+.block-header {
+    border-bottom: #dadada 1px solid;
+
+}
+
+.block-content {
+    padding-top: 15px;
+}
+
+.clickable:hover {
+    color: #00b7f1;
+    cursor: pointer;
+}
+
+.clickable
+{
+    color: #6C676A;
+}
+
+.color-gray
+{
+    color: #6c676a;
+}
+
+
+@media(max-width: 768px) 
+{
+.label-text {
+    text-align: left;
+  }
+}
+
+@media(min-width: 768px) 
+{
+.label-text {
+    text-align: right;
+  }
+}
+
+.main {
+  font-weight: 700;
+}

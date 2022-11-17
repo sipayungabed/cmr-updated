@@ -1,0 +1,72 @@
+<ng-container *ngIf="category == 'outletQris'">
+    <div class="row  mb-2">
+        <label class="col-md-3 label-text">
+            <span class="main">Fasilitas</span>
+        </label>
+        <div class="col-md-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" disabled checked>
+                <label class="form-check-label">QRIS Statis</label>
+            </div>
+        </div>  
+    </div>
+</ng-container>
+
+<ng-container *ngIf="category != 'outletQris'">
+    <div class="row  mb-2">
+        <label class="col-md-3 label-text">
+            <span class="main">Fasilitas</span>
+        </label>
+        <div *ngFor="let fas of fasilitasList">
+            <ng-container *ngIf="fas.show">
+                <div class="col-md-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" disabled checked>
+                        <label class="form-check-label">{{fas.name}}</label>
+                    </div>
+                </div>  
+            </ng-container>
+        </div>
+    </div>
+    
+    <ul class="nav nav-tabs noselect text-primary mb-2" >
+        <ng-container *ngFor="let menu of menuList">
+            <li class="nav-item" [class.nav-custom]="menu.name != activeMenu"  *ngIf="menu.show">
+                <a class="nav-link" [class.active]="menu.name == activeMenu" (click)="activeMenu = menu.name">Fitur {{menu.name}}</a>
+              </li>
+        </ng-container>
+    </ul>
+    <div [ngSwitch]="activeMenu">
+        <div *ngSwitchCase="'Debit'">
+            <app-detail-fasilitas-debit [dataDebit]="dataFasilitas[activeMenu]"
+                                        [category]="category"
+                                        [jsonKey]="jsonKey[category]"
+            >
+            </app-detail-fasilitas-debit>
+        </div>
+        <div *ngSwitchCase="'Kredit'">
+            <app-detail-fasilitas-kredit [dataKredit]="dataFasilitas[activeMenu]"
+                                            [category]="category"
+                                            [jsonKey]="jsonKey[category]">
+            </app-detail-fasilitas-kredit>
+        </div>
+        <div *ngSwitchCase="'Flazz'">
+            <app-detail-fasilitas-flazz [dataFlazz]="dataFasilitas[activeMenu]"
+                                        [jsonKey]="jsonKey[category]">
+            </app-detail-fasilitas-flazz>
+        </div>
+        <div *ngSwitchCase="'Lainnya'">
+            <app-detail-fasilitas-lainnya [dataLainnya]="dataFasilitas[activeMenu]"
+                                            [dataKredit]="dataFasilitas['Kredit']"
+                                            [dataCMR]="dataFasilitas['CMR']"                                        
+                                            [dataFreeUangIuran]="dataFasilitas['Free Uang Iuran']"
+                                            [dataForceSettlementDay]="dataFasilitas['Force Settlement Day']"
+                                            [dataAutoSettle]="dataFasilitas['Auto Settle']"
+                                            [jsonKey]="jsonKey[category]">
+        </app-detail-fasilitas-lainnya>
+        </div>
+    </div>
+</ng-container>
+
+
+

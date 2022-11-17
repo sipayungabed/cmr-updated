@@ -1,0 +1,80 @@
+<div class="row mb-3 color-gray"
+    [class.text-danger]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+    [class.text-success]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid"
+    [class.text-warning]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).status == 'PENDING'">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{input.label}}</span>
+        <span *ngIf="input.required" class="text-danger"> *</span>
+    </label>
+    <div [ngClass]="colInput">
+        <div [formGroup]="formGroup">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend" *ngIf="input.prepend">
+                    <div class="input-group-text"><span [innerHTML]="input.prepend"></span></div>
+                </div>
+                <div class="control-group">
+                    <div class="controls span2">
+
+<!--                  FDW - 21 January 2022 => create vertical template -->
+                      <div *ngIf="isCheckboxVertical;then verticalInputTemplate else standartInputTemplate"></div>
+
+                    </div>
+                   </div>
+                <div class="input-group-append" *ngIf="input.append">
+                    <div class="input-group-text"><span [innerHTML]="input.append"></span></div>
+                </div>
+            </div>
+
+
+
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.required" class="note text-danger">
+                Wajib diisi!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.maxlength" class="note text-danger">
+                Inputan tidak boleh lebih dari {{input.maxlength}} digit!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.minlength" class="note text-danger">
+                Inputan tidak boleh kurang dari {{input.minlength}} digit!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).status == 'PENDING'" class="note text-warning">
+                Sedang Memuat... <i class="fas fa-hourglass-end"></i>
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.errorService" class="note text-danger">
+                Gagal Memuat Data!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.duplicate" class="note text-danger">
+                Inputan sudah ada!
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #standartInputTemplate [formGroup]="formGroup">
+  <label class="checkbox" *ngFor="let option of input.option">
+    <input type="checkbox"  id="input.jsonName"
+           [class.has-warning]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).status == 'PENDING'"
+           [class.is-invalid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+           [class.is-valid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid"
+           [formControlName]="input.jsonName"
+           (change)="onChange($event.target.checked,option.value)"
+           [value]="input.value"
+    >
+    {{option.value}}
+
+  </label>
+</ng-template>
+
+<ng-template #verticalInputTemplate  [formGroup]="formGroup">
+  <div *ngFor="let option of input.option">
+    <input type="checkbox"  id="input.jsonName"
+           [class.has-warning]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).status == 'PENDING'"
+           [class.is-invalid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+           [class.is-valid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid"
+           [formControlName]="input.jsonName"
+           (change)="onChange($event.target.checked,option.value)"
+           [value]="input.value"
+    >
+    {{option.value}}
+  </div>
+</ng-template>

@@ -1,0 +1,114 @@
+
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+    <mat-panel-title class="clickable">
+        <h6>{{tableModel.title}}</h6>
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="table-responsive">
+        <table  class="table table-striped table-hover">
+            <thead app-header-bar [tableData]="tableModel.tableData" [sort]="sort" [append]="newColumn" (sortEvent)="sorting($event)"></thead>
+            <tbody app-top-bar *ngIf="!tableModel.removeTopBar" [tableData]="tableModel.tableData" [addButton]="tableModel.addButton" [checkNewColumn]="newColumn" (search)="filter($event)"></tbody>
+           
+            <ng-container [ngSwitch]="status">
+                <tbody app-loading-bar *ngSwitchCase="'loading'" [length]="newColumn ? tableModel.tableData.length+1 : tableModel.tableData.length"></tbody>
+                <tbody app-notification-bar  *ngSwitchCase="'failed'" [length]="length" [content]="'Gagal memuat data!'" [class]="'text-danger text-center'"></tbody>
+                <tbody app-notification-bar  *ngSwitchCase="'no content'" [length]="length"[content]="'Tidak ada data!'" [class]="'text-center'"></tbody>
+                <tbody  *ngSwitchCase="'success'">
+                    <tr *ngFor="let data of dataList">
+                        <td *ngFor="let tableData of tableModel.tableData" [ngClass]="(data['isactive'] != null && !data['isactive']) || (data['isActive'] != null && !data['isActive']) ? 'text-danger' : ''">
+                            <div *ngIf="!tableData.link && !tableData.linkModal" [innerHTML]="data | customTable:tableData"></div>
+                            <a *ngIf="tableData.link" [routerLink]="tableData.link + data[tableData.linkIdKey]">
+                                <div [innerHTML]="data | customTable:tableData"></div></a>
+                            <a *ngIf="tableData.linkModal && data[tableData.jsonName] && data['jenisOutlet'] == 'QRIS Statis'" href="javascript:;" (click)="openModal(content, data)">
+                                <div [innerHTML]="data | customTable:tableData"></div></a>
+                            <a *ngIf="(tableData.linkModal && !data[tableData.jsonName]) || (tableData.linkModal && data[tableData.jsonName] && data['jenisOutlet'] != 'QRIS Statis')">
+                                <div [innerHTML]="data | customTable:tableData"></div></a>
+                        </td>
+                        <td *ngIf="tableModel.editButton">
+                            <div class="fixed-width-btn">
+                            <a [routerLink]="tableModel.editId ? 'edit/' + data[tableModel.editId] : 'edit/' + data['id']" 
+                            class="btn btn-primary btn-block btn-sm">
+                                <i class="fas fa-edit"></i> Ubah</a>
+                            </div>
+                        </td>
+                        <td *ngIf="!tableModel.editButton && tableModel.addButton"><div class="fixed-width-btn"></div></td>
+                    </tr>
+                </tbody>
+            </ng-container>
+           
+        </table>
+    </div>
+
+    <div *ngIf="status == 'success' && !tableModel.removePagination" class="row mt-4 ">
+        <div class="col-lg-6 mt-2">
+            <div class="pagination-responsive">
+                Baris {{ row.start }} - {{ row.end }} dari {{tableModel.totalrows}} data.
+            </div>
+        </div> 
+        <div class="col-lg-6">
+            <div class="pagination-responsive d-flex justify-content-end" >
+                <ngb-pagination  
+                [collectionSize]="tableModel.totalrows"
+                [(page)]="pagination.page"
+                (pageChange)="paginate()" 
+                [maxSize]="5" 
+                [rotate]="true" 
+                [ellipses]="false" 
+                [boundaryLinks]="true">
+                </ngb-pagination>
+            </div>
+        </div>
+    </div> 
+</mat-expansion-panel>
+
+<ng-template #content let-modal>
+    <div class="modal-body">
+        <ng-container *ngIf="isImageLoading">
+            Memuat...
+        </ng-container>
+        <ng-container *ngIf="!isImageLoading">
+            <table style="width: 100%; table-layout: fixed; background-color: #fff; text-align: center;" class="table">
+                <tbody><b>
+                <tr>
+                    <td style="text-align: right;">MID:</td>
+                    <td style="text-align: left;">{{dataModal['mid']}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Nama Outlet:</td>
+                    <td style="text-align: left;">{{dataModal['name']}}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">NMID:</td>
+                    <td style="text-align: left;">{{dataModal['nmid']}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </b></tbody>
+            </table>
+            <ng-container *ngIf="imageToShow">
+                <div id="carouselExampleControls" class="carousel slide">
+                    <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="bg-white img-thumbnail" style="width: 100vw;" [src]="imageToShow" crossOrigin="anonymous">
+                    </div>
+                    </div>
+                </div> 
+            </ng-container>
+            <ng-container *ngIf="!imageToShow">
+                <br>
+                <h6 style="text-align: center;">Image QR MID {{dataModal['mid']}} Tidak Ditemukan!
+                <br><br>
+                Silakan hubungi Tim Halo ITX A MSE 
+                <br>
+                (halo_itx_a_mse@intra.bca)</h6>
+             </ng-container>
+        </ng-container>
+    </div> 
+    <div class="modal-footer">
+        <button *ngIf="imageToShow" type="button" class="btn btn-primary" (click)="downloadImage(dataModal)"><i class="fas fa-download"></i> Download</button>
+        <button type="button" class="btn btn-primary" (click)="closeModal()">Close</button>
+    </div>
+</ng-template>

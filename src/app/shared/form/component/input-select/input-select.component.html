@@ -1,0 +1,39 @@
+<div class="row mb-3 color-gray" 
+[class.text-danger]="invalid"
+[class.text-success]="valid">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{input.label}}</span>
+        <span *ngIf="input.required" class="text-danger"> *</span>
+    </label>
+    <div [ngClass]="colInput">
+        <ng-container [ngSwitch]="status">
+            <ng-container *ngSwitchCase="'success'">
+                <select class="form-control-sm form-control" 
+                [class.is-invalid]="invalid"
+                [class.is-valid]="valid"
+                [(ngModel)]="value" [ngModelOptions]="{standalone: true}"
+                (change)="changeEvent();">
+                    <option *ngIf="value === '' || value == null" value="" selected>-- Pilih --</option>
+                    <option *ngFor="let option of input.option;" [ngValue]="option.value">{{option.key}}</option>
+                </select>
+                 <div *ngIf="error.required" class="note">
+                    Wajib diisi!
+                </div>
+                <div *ngIf="error.pattern" class="note">
+                    Pilihan tidak sesuai
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'loading'">
+                <div class="input-group input-group-sm">
+                    <div class="form-control "  readonly>Memuat Data...</div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'failed'">
+                <div class="input-group input-group-sm">
+                    <div class="form-control text-danger" readonly>Gagal Memuat Data</div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

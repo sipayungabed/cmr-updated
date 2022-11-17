@@ -1,0 +1,22 @@
+.note
+{
+    margin-top: 5px;
+    font-size: 11.7px;
+}
+
+.main {
+    font-weight: 500; 
+}
+@media(max-width: 768px) 
+{
+.label-text {
+    text-align: left;
+  }
+}
+
+@media(min-width: 768px) 
+{
+.label-text {
+    text-align: right;
+  }
+}

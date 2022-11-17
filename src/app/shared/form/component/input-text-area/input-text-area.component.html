@@ -1,0 +1,32 @@
+<div class="row mb-3 color-gray" 
+    [class.text-danger]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+    [class.text-success]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{input.label}}</span>
+        <span *ngIf="input.required" class="text-danger"> *</span>
+    </label>
+    <div [ngClass]="colInput">
+        <div [formGroup]="formGroup">
+            <textarea 
+                    class="form-control-sm form-control" 
+                    [class.is-invalid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+                    [class.is-valid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid"
+                    [formControlName]="input.jsonName"
+                    [attr.maxlength]="input.maxlength" 
+                    [attr.rows]="input.textAreaConfiguration ? input.textAreaConfiguration.rows  : '3'"
+                    [attr.cols]="input.textAreaConfiguration ? input.textAreaConfiguration.cols : '50'"
+                    [attr.id]="input.jsonName" 
+                    [placeholder]="input.label"></textarea>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.required" class="note text-danger">
+                Wajib diisi!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.maxlength" class="note text-danger">
+                Inputan tidak boleh lebih dari {{input.maxlength}} digit!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.minlength" class="note text-danger">
+                Inputan tidak boleh kurang dari {{input.minlength}} digit!
+            </div>
+        </div>
+    </div>
+</div>

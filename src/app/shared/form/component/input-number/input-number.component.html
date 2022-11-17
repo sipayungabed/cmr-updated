@@ -1,0 +1,45 @@
+
+<div class="row mb-3 color-gray" 
+[class.text-danger]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+[class.text-success]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{input.label}}</span>
+        <span *ngIf="input.required" class="text-danger"> *</span>
+    </label>
+    <div [ngClass]="colInput">
+        <div [formGroup]="formGroup" >
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend" *ngIf="input.prepend">
+                    <div class="input-group-text"><span [innerHTML]="input.prepend"></span></div>
+                </div>
+                <input type="text"  
+                        class="form-control-sm form-control" 
+                        [class.is-invalid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).invalid"
+                        [class.is-valid]="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).valid"
+                        [formControlName]="input.jsonName"
+                        (input)="filter($event)"
+                        [attr.id]="input.jsonName" 
+                        [placeholder]="input.label">
+                <div class="input-group-append" *ngIf="input.append">
+                    <div class="input-group-text"><span [innerHTML]="input.append"></span></div>
+                </div>
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.required" class="note">
+                Wajib diisi!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.pattern" class="note">
+                Inputan harus angka dan harus {{input.maxlength}} digit!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.minlength" class="note">
+                Inputan tidak boleh kurang dari {{input.minlength}} digit!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.max" class="note">
+                Inputan tidak boleh lebih dari {{input.maxValue}}!
+            </div>
+            <div *ngIf="formGroup.get(input.jsonName).touched && formGroup.get(input.jsonName).errors?.min" class="note">
+                Inputan tidak boleh kurang dari {{input.minValue}}!
+            </div>
+        </div>
+    </div>
+</div>

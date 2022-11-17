@@ -1,0 +1,11 @@
+<div class="row mb-3">
+    <div [ngClass]="indented"></div>
+    <label class="label-text" [ngClass]="colLabel">
+        <span class="main">{{input.label}}</span>
+    </label>
+    <div [ngClass]="colInput">
+        <div [formGroup]="formGroup">
+            {{formGroup.get(input.jsonName).value}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+
+.table td, .table th {
+    padding: 0.2rem 0.5rem  0.2rem 0.5rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+    color: #6c676a;
+}
+
+.table th 
+{
+    font-size: 14.3px;
+}
+
+.table td
+{
+    font-size: 13px;
+}
+
+input { 
+    text-align: right; 
+}

@@ -1,0 +1,49 @@
+<mat-expansion-panel [expanded]="true" class="color-gray mb-3">
+    <mat-expansion-panel-header class="block-header">
+    <mat-panel-title class="clickable">
+        <h6 >Kelengkapan Dokumen</h6>
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+        <div class="block-content">
+            <app-detail-dokumen 
+            *ngFor="let dataDokumen of dataList; let i = index;" 
+            [data]="dataDokumen"
+            [index]="i" (imageEvent)="openModal(content, $event)"></app-detail-dokumen>
+        </div>
+</mat-expansion-panel>
+
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+      <h5 class="modal-title" id="modal-basic-title" style="text-align:center">Dokumen {{indexActive+1}}</h5>
+          <button type="button" class="btn btn-danger" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="pull-left" style="margin-top: -10px;">
+        <h6>Dokumen Terlampir: {{documentTypes}}</h6>
+      </div>
+      <div class="pull-right" style="margin-top: -20px; float:right">
+        <button type="button" class=" btn btn-link" title="Open in new tab" (click)="link()"><i class="fas fa-external-link-alt"></i></button>
+        <button *ngIf="filetype != 'PDF'" type="button" class="btn btn-link" title="Rotate" (click)="rotate()"><i class="fas fa-redo"></i></button>
+        <button type="button" class=" btn btn-link" title="Previous" (click)="prevImage()"><i class="fas fa-chevron-left"></i></button>
+        <button type="button" class="btn btn-link" title="Next" (click)="nextImage()"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div id="carouselExampleControls" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div *ngIf="filetype == 'PDF'; else image">
+              <iframe [src]="imageActive" height="500" style="width: 100%;" title="Iframe Example"></iframe>
+            </div>
+            <ng-template #image>
+              <img class="bg-white img-thumbnail" style="width: 100vw;" [src]="imageActive" crossOrigin="anonymous">
+            </ng-template>
+          </div>
+        </div>
+      </div> 
+      
+    </div>
+    <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="closeModal()">Close</button>
+    </div> -->
+</ng-template>

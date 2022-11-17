@@ -1,0 +1,21 @@
+
+
+  <div id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <span class="img">
+            <img src="assets\image\logo-magenta-6070fa8209d1a5d539905dd6aff41636.png" class="img-header-sidebar">
+        </span>
+        <a href="/"  style="text-decoration:none">
+        <span class="name">Magen_opr3</span>
+        <span class="title">Kantor Pusat<span class="caret"></span></span>
+        </a>
+    </div>
+    <div class="list-group list-group-flush">
+        <a *ngFor="let sidebar of sidebarList"
+        [routerLinkActive]="['active']" 
+        [routerLinkActiveOptions]="{exact:true}"
+        [routerLink]="sidebar.url"  class="list-group-item list-group-item-action" draggable="false">
+            <i [ngClass]="sidebar.icon"></i><span class="nav-label">{{sidebar.label}}</span>
+        </a>
+    </div>
+  </div>

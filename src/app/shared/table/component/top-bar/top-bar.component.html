@@ -1,0 +1,52 @@
+
+<tr>
+    <td *ngIf="checkbox">
+        <div class="form-check">
+            <input type="checkbox" class="mt-2 mx-auto form-check-input" (change)="checkboxChange($event)">
+        </div>
+    </td>
+    <td *ngFor="let data of tableData; let i = index" > 
+        <div *ngIf="data.search" [ngStyle]="{'min-width': data.width ? data.width + 'em' : '9em'}">
+            <ng-container [ngSwitch]="data.search.inputType">
+                <ng-container *ngSwitchCase="'text'">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" (keydown.enter)="searchText(data.search.value, i)" placeholder="Cari..." [(ngModel)]="data.search.value">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" (click)="searchText(data.search.value, i)"><i class="fas fa-search form-control-feedback"></i></button >
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'select'">
+                    <div class="input-group input-group-sm">
+                        <select  class="custom-select" (change)="searchSelect($event, i)" [(ngModel)]="data.search.value"> 
+                            <option *ngFor="let option of data.search.options" [value]="option.value">{{option.key}}</option>
+                        </select>
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'multiple-selection'">
+                    <mat-form-field appearance="outline" style="margin-top: -0.25em;">
+                        <mat-select multiple [(ngModel)]="data.search.value" [disableOptionCentering]="'true'" [placeholder]="'Cari...'">
+                            <mat-select-trigger>
+                                {{placeholderMultipleSelect}}
+                                <span *ngIf="data.search.value?.length > 1 && data.search.value?.length != data.search.options.length" class="example-additional-selection">
+                                  (+{{data.search.value.length - 1}} {{data.search.value?.length === 2 ? 'other' : 'others'}})
+                                </span>
+                              </mat-select-trigger>
+                          <button class="custom-button" (click)="allSelect(data, i)">{{data.search.value.length == data.search.options.length ? 'Unselect All' : 'Select All'}}</button>
+                          <mat-option *ngFor="let option of data.search.options" [value]="option.value" (click)="testSearch(data.search.value, i);   updatePlaceholder(data)">{{option.key}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div *ngIf="!data.search" [ngStyle]="{'min-width': data.width ? data.width + 'em' : '9em'}"></div>
+    </td>
+    <td *ngIf="addButton" class="fixed-width-btn">
+        <div>
+            <a class="btn btn-outline-secondary btn-sm btn-block" routerLink="add" role="button"><i class="fas fa-plus"></i> Tambah</a>
+        </div>
+    </td>
+    <td *ngIf="!addButton && checkNewColumn"><div class="fixed-width-btn"></div></td>
+</tr>
+
+

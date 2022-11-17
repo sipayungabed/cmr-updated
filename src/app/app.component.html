@@ -1,0 +1,30 @@
+<mat-sidenav-container class="example-container">
+  <!-- <mat-sidenav #sidenav mode="side" [(opened)]="showSidebar">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav> -->
+
+  <mat-sidenav-content>
+    <!-- <app-navbar [sidebarState]="showSidebar" (openSidebar)="clickSidebar($event)"></app-navbar> -->
+    <div class="container-fluid">
+      <div class="row border-bottom page-heading">
+        <div class="col-lg-10">
+          <h2 style="color: #6c676a; font-weight: 200; font-size: 27px;">{{title}}</h2>
+          <app-breadcrumbs></app-breadcrumbs>
+          <!-- <button class="btn btn-danger" (click)="clearToken()">clear token</button>
+          <button class="btn btn-primary" (click)="getDataFromDummyServer()">Get Data Dummy</button> -->
+        </div>
+      </div>
+      <div class="page-content">
+        <router-outlet></router-outlet>
+     </div>
+    </div>
+    <!-- <footer class="page-footer bottom">
+      <div><strong>Copyright</strong> PT Bank Central Asia Tbk - <span class="text-primary">MAGENTA Team</span> © 2017 - 2020</div>
+    </footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+

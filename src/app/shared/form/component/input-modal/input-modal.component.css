@@ -1,0 +1,80 @@
+/* modal animation */
+.modal-content{
+    animation-name: example;
+    animation-duration: 0.3s;
+  }
+  
+  @keyframes example {
+    0%   {transform: scale(0.5)}
+    75%  {transform: scale(1.1)}
+    100% {transform: scale(1)}
+  }
+
+  .clickable:hover {
+    cursor: pointer;
+  }
+
+
+.note
+{
+  margin-top: 5px;
+  font-size: 11.7px;
+}
+
+.failed
+{
+  background-color: #D9534F;
+  color: rgb(241, 241, 241);
+  border-color: #D9534F;
+  border-width: 1px;
+}
+
+.success
+{
+  background-color: #5cb85c;
+  color: rgb(241, 241, 241);
+  border-color: #5cb85c;
+  border-width: 1px;
+}
+
+.btn-custom:active, .btn-custom:hover
+{
+  filter: brightness(80%);
+} 
+
+button[type="button"]{
+  outline:none;
+}
+button[type="button"]::-moz-focus-inner {
+  border: 0;
+}
+
+.border-right
+{
+  border-right-color: rgb(206, 212, 218)!important;
+  border-right-style: solid!important;
+  border-right-width: 1px!important;
+}
+
+.note
+{
+    margin-top: 5px;
+    font-size: 11.7px;
+}
+
+.main {
+    font-weight: 500; 
+}
+@media(max-width: 768px) 
+{
+.label-text {
+    text-align: left;
+  }
+}
+
+@media(min-width: 768px) 
+{
+.label-text {
+    text-align: right;
+  }
+}

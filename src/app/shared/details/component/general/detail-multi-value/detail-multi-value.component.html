@@ -1,0 +1,18 @@
+<div class="mb-3">
+    <div class="row mb-2">
+        <div [ngClass]="indented"></div>
+        <div class="label-text" [ngClass]="colLabel">
+            <span class="main">{{detail.label}}</span>
+        </div>
+        <div [ngClass]="colValue">
+                {{dataList[0] | changeValue:detail}}
+        </div>
+    </div>
+    <div class="row mb-2" *ngFor="let data of dataList | slice:1;">
+        <div [ngClass]="indented"></div>
+        <div [ngClass]="colLabel"></div>
+        <div [ngClass]="colValue">
+            {{data | changeValue:detail}}
+        </div>
+    </div>
+</div>

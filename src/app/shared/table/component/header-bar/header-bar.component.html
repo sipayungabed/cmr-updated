@@ -1,0 +1,34 @@
+<tr>
+  <th *ngIf="prepend" [attr.colspan]="prepend"></th>
+  <div class="d-flex">
+    <th
+      [ngClass]="{
+        id: td.headerName == 'Client ID',
+        name: td.headerName == 'Client Name',
+        email: td.headerName == 'Email',
+        approval: td.headerName == 'Client Approval',
+        template: td.headerName == 'Template Approval',
+        file: td.headerName == 'File Type'
+      }"
+      *ngFor="let td of tableData; let i = index"
+      [class.active]="i == sort.index"
+      class="header"
+    >
+      <span
+        [ngClass]="{
+            'left': td.headerName == 'Client ID'}"
+        class="clickable"
+        (click)="sortEvent.emit(i)"
+      >
+        {{ td.headerName }}
+        <span *ngIf="sort.direction == 'asc' && i == sort.index">
+          <i class="fas fa-sort-alpha-down right"></i>
+        </span>
+        <span *ngIf="sort.direction == 'desc' && i == sort.index">
+          <i class="fas fa-sort-alpha-up right"></i>
+        </span>
+      </span>
+    </th>
+  </div>
+  <th *ngIf="append" [attr.colspan]="append"></th>
+</tr>
