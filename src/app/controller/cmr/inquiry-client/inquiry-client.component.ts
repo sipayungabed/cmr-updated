@@ -17,6 +17,7 @@ export class InquiryClientComponent implements OnInit {
     removeTopBar: true,
     title: 'Inquiry CMR',
     totalrows: 0,
+    
     editButton: true,
     getListUrl: GET_CLIENT_CMR,
     paginationInit: {
